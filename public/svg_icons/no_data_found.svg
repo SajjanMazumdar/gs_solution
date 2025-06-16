@@ -1,0 +1,67 @@
+<div class="Main-nodata">
+                        <div class="nodataIcon"> <svg version="1.1" id="Layer_1" width="192" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 190.941 117.882"
+                                style="enable-background:new 0 0 190.941 117.882;" xml:space="preserve">
+                                <path style="fill:#E8F9EA;" d="M109.181,23.695c0,0,12-24.706,38.118-20.941s38.118,21.412,40,47.294s-11.765,60.941-31.059,60.941
+                        s-129.176,0-129.176,0s-32.471-4.235-23.059-43.294S101.181,22.519,109.181,23.695z" />
+                                <path style="fill:#DBDBDB;" d="M148.71,66.515V54.088h-1v-2.912h1V27.813c0-5.903-4.803-10.706-10.706-10.706H45.534
+                        c-5.903,0-10.706,4.803-10.706,10.706v83.646l1,1H147.71l1-1V67.96h-3.519v-1.446H148.71z" />
+                                <path style="fill:#FFFFFF;" d="M147.71,111.46H35.828V27.813c0-5.36,4.345-9.706,9.706-9.706h92.471c5.36,0,9.706,4.345,9.706,9.706
+                        V111.46z" />
+                                <line style="fill:none;stroke:#DBDBDB;stroke-miterlimit:10;" x1="35.828" y1="30.46" x2="147.71"
+                                    y2="30.46" />
+                                <g>
+                                    <g>
+                                        <path style="fill:#CECECE;" d="M14.034,67.016v-20.2c0-1.691,1.371-3.062,3.062-3.062h82.288c1.691,0,3.063,1.371,3.063,3.063
+                                v20.2c0,1.691-1.371,3.062-3.062,3.062H17.096C15.405,70.078,14.034,68.707,14.034,67.016z" />
+                                        <path style="fill:#DBDBDB;" d="M17.096,69.578c-1.415,0-2.562-1.147-2.562-2.562V46.316c0-1.415,1.147-2.562,2.562-2.562h82.288
+                                c1.415,0,2.562,1.147,2.562,2.562v20.7c0,1.415-1.147,2.562-2.562,2.562H17.096z" />
+                                        <path style="fill:#FFFFFF;" d="M99.384,68.578H17.096c-0.863,0-1.562-0.699-1.562-1.562v-20.7c0-0.863,0.699-1.562,1.562-1.562
+                                h82.288c0.863,0,1.562,0.699,1.562,1.562v20.7C100.946,67.878,100.246,68.578,99.384,68.578z" />
+                                    </g>
+                                    <g>
+                                        <circle style="fill:#DBDBDB;" cx="27.357" cy="55.666" r="6.485" />
+                                        <line
+                                            style="fill:none;stroke:#BCBCBC;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                                            x1="38.828" y1="52.96" x2="73.21" y2="52.96" />
+                                        <line
+                                            style="fill:none;stroke:#BCBCBC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                                            x1="38.828" y1="59.96" x2="88.21" y2="59.96" />
+                                    </g>
+                                </g>
+                                <circle style="fill:#F4C84A;" cx="146.71" cy="83.695" r="16.235" />
+                                <circle style="fill:#FADD8A;" cx="146.71" cy="83.695" r="14.706" />
+                                <g>
+                                    <line
+                                        style="fill:none;stroke:#D6A427;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                                        x1="151.041" y1="80.026" x2="143.144" y2="87.614" />
+                                    <g>
+                                        <line
+                                            style="fill:none;stroke:#D6A427;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                                            x1="150.887" y1="87.769" x2="143.299" y2="79.872" />
+                                    </g>
+                                </g>
+                                <line style="fill:none;stroke:#66BF72;stroke-width:3;stroke-miterlimit:10;" x1="11.299" y1="111.872"
+                                    x2="170.122" y2="111.872" />
+                                <g>
+                                    <g>
+                                        <path style="fill:#CECECE;" d="M14.034,100.016v-20.2c0-1.691,1.371-3.062,3.062-3.062h82.288c1.691,0,3.063,1.371,3.063,3.063
+                                v20.2c0,1.691-1.371,3.062-3.062,3.062H17.096C15.405,103.078,14.034,101.707,14.034,100.016z" />
+                                        <path style="fill:#DBDBDB;" d="M17.096,102.578c-1.415,0-2.562-1.147-2.562-2.562V79.316c0-1.415,1.147-2.562,2.562-2.562h82.288
+                                c1.415,0,2.562,1.147,2.562,2.562v20.7c0,1.415-1.147,2.562-2.562,2.562H17.096z" />
+                                        <path style="fill:#FFFFFF;" d="M99.384,101.578H17.096c-0.863,0-1.562-0.699-1.562-1.562v-20.7c0-0.863,0.699-1.562,1.562-1.562
+                                h82.288c0.863,0,1.562,0.699,1.562,1.562v20.7C100.946,100.878,100.246,101.578,99.384,101.578z" />
+                                    </g>
+                                    <g>
+                                        <circle style="fill:#DBDBDB;" cx="27.357" cy="88.666" r="6.485" />
+                                        <line
+                                            style="fill:none;stroke:#BCBCBC;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                                            x1="38.828" y1="85.96" x2="73.21" y2="85.96" />
+                                        <line
+                                            style="fill:none;stroke:#BCBCBC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                                            x1="38.828" y1="92.96" x2="88.21" y2="92.96" />
+                                    </g>
+                                </g>
+                            </svg> </div>
+                        <p class="no__data__found">No data to display.</p>
+                    </div> 
