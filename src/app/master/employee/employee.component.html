@@ -1,0 +1,170 @@
+<!-- #region loader -->
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-clip-rotate-pulse">
+  <p style="font-size: 16px; color: white">Loading...</p>
+</ngx-spinner>
+<!-- #endregion -->
+
+<section>
+
+  <div class="top-header">
+    <div class="topd">
+      <h2>Employee List</h2>
+      <div class="button-box">
+        <div class="example-button-row">
+
+          @if(false) {
+          <button mat-raised-button>
+            <svg-icon src="/svg_icons/fullScreen.svg" [svgStyle]="{'width.px':20,'height.px':20}" viewBox="0 0 24 24"
+              fill="rgba(53,53,53,1)">
+            </svg-icon>
+          </button>
+
+          <button mat-raised-button class="full-scrn">
+            <svg-icon src="/svg_icons/exitFullScreen.svg" [svgStyle]="{'width.px':20,'height.px':20}"
+              viewBox="0 0 448 512" fill="rgba(53,53,53,1)">
+            </svg-icon>
+          </button>
+          }
+
+          <button mat-raised-button (click)="openEmployeeDetails()" #tooltip="matTooltip" matTooltip="Add New (Alt+N)"
+            matTooltipPosition="below">
+            <svg-icon src="/svg_icons/add.svg" [svgStyle]="{'width.px':20,'height.px':20}" viewBox="0 0 24 24"
+              fill="rgba(53,53,53,1)">
+            </svg-icon>
+          </button>
+
+          <button mat-raised-button (click)="filter_box = !filter_box" #tooltip="matTooltip" matTooltip="Open Filter"
+            matTooltipPosition="below">
+            <svg-icon src="/svg_icons/filter.svg" [svgStyle]="{'width.px':20,'height.px':20}" viewBox="0 0 24 24"
+              fill="rgba(53,53,53,1)">
+            </svg-icon>
+          </button>
+
+          <button mat-raised-button (click)="downloadExcel()" #tooltip="matTooltip" matTooltip="Download Excel"
+            matTooltipPosition="below">
+            <svg-icon src="/svg_icons/export.svg" [svgStyle]="{'width.px':20,'height.px':20}" viewBox="0 0 24 24"
+              fill="rgba(53,53,53,1)">
+            </svg-icon>
+          </button>
+
+          @if(false) {
+          <button mat-raised-button>
+            <svg-icon src="/svg_icons/openAll.svg" [svgStyle]="{'width.px':20,'height.px':20}" viewBox="0 0 24 24"
+              fill="rgba(53,53,53,1)">
+            </svg-icon>
+          </button>
+          <button mat-raised-button>
+            <svg-icon src="/svg_icons/closeAll.svg" [svgStyle]="{'width.px':20,'height.px':20}" viewBox="0 0 24 24"
+              fill="rgba(53,53,53,1)">
+            </svg-icon>
+          </button>
+          }
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  @if(filter_box) {
+  <div class="filter-box" [@list1]>
+    <div class="filter-head">
+      <h2>Filter</h2>
+      <button mat-raised-button style="box-shadow: none;padding: 0px;min-width: 25px;height: 25px;"
+        (click)="filter_box = !filter_box">
+        <svg-icon src="/svg_icons/closeCircle.svg" [svgStyle]="{'width.px':24,'height.px':24}" viewBox="0 0 24 24"
+          fill="rgba(53,53,53,1)">
+        </svg-icon>
+      </button>
+    </div>
+    <div class="filter-contain">
+      <mat-form-field class="custom-style2" appearance="outline" class="example-full-width custom-style3">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="filter_obj.status" multiple>
+            <mat-option [value]=1>Active</mat-option>
+            <mat-option [value]=0>In-Active</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <mat-form-field class="custom-style2" appearance="outline">
+        <mat-label>Filter</mat-label>
+        <input matInput placeholder="Filter" #input>
+      </mat-form-field> -->
+    </div>
+    <mat-dialog-actions class="fixed-button">
+      <div class="example-button-row" style="justify-content: space-between;padding: 15px 7px;">
+        <button mat-fab (click)="applyFilter()" style=" background: #3085d6; height: 34px; color: #fff; width: 45%;">
+          Apply
+        </button>
+        <button mat-fab (click)="resetFilter()" style=" background: #f5b91e;height: 34px; color: #000; width: 45%;">
+          Reset
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+  }
+
+  <div class="flex-header table-search-export">
+    <mat-form-field class="custom-style" appearance="outline">
+      <!-- <mat-label>Filter</mat-label>  -->
+      <input matInput (keyup)="applySearch($event)" placeholder="Search here" #input>
+    </mat-form-field>
+
+    <mat-paginator #paginator [length]="23" [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100, 200]"
+      [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+  <div class="table-content">
+    <table mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumns" [class.even-row]="i % 2 === 0">
+      </tr>
+
+      <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+        <td mat-cell *matCellDef="let element; let i = index;"> {{i + 1}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="emp_code">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CODE </th>
+        <td mat-cell *matCellDef="let element"> {{element.emp_code}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="emp_name" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> emp </th>
+        <td mat-cell *matCellDef="let element"> {{element.emp_name}} </td>
+      </ng-container>
+
+      <!--  -->
+      <ng-container matColumnDef="emp_status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> STATUS </th>
+        <td mat-cell *matCellDef="let element"> {{element.emp_status == 1 ? 'Active' : 'Inactive'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef>
+          <a #tooltip="matTooltip" matTooltip="Action" style="padding: 0px 10px;">
+            <svg-icon src="/svg_icons/setting.svg" [svgStyle]="{'width.px':20,'height.px':20}" viewBox="0 0 24 24"
+              fill="rgba(53,53,53,1)"></svg-icon>
+          </a>
+        </th>
+        <td mat-cell *matCellDef="let element" class="sticky">
+          <button mat-button (click)="openEmployeeDetails(element)" style="margin-left: 6px;">
+            <span>
+              <svg-icon src="/svg_icons/action.svg" [svgStyle]="{'width.px':16,'height.px':16}"
+                viewBox="0 0 24 24"></svg-icon>
+            </span>
+          </button>
+        </td>
+      </ng-container>
+
+
+    </table>
+  </div>
+</section>

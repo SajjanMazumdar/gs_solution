@@ -1,91 +1,75 @@
-import { Type } from '@angular/core';
 
 export type MenuItem = {
+  unique_id: number;
   icon: string;
   label: string;
-  route?: string;
+  route: string;
+  status: boolean;
   subItems?: MenuItem[];
-  component?: Type<unknown>;
 };
 
 export const menuItems: MenuItem[] = [
   {
+    unique_id: 1,
     icon: 'dashboard',
     label: 'Dashboard',
     route: 'dashboard',
+    status: true,
   },
   {
-    icon: 'people',
-    label: 'Farmer',
-    route: 'farmer',
-    subItems: [
-      {
-        icon: 'contacts',
-        label: 'Directory',
-        route: 'farmer/list',
-      },
-      {
-        icon: 'inventory',
-        label: 'CFO Appr.',
-        route: 'farmer/finance',
-      },
-      {
-        icon: 'done_all',
-        label: 'Admin Appr.',
-        route: 'farmer/admin',
-      }
-    ]
-  },
-  {
-    icon: 'widgets',
+    unique_id: 4,
+    icon: 'master',
     label: 'Master',
-    route: 'master',
+    route: '',
+    status: true,
     subItems: [
       {
-        icon: 'category',
-        label: 'Branch',
-        route: 'master/branch',
-        // subItems: [
-        //   {
-        //     icon: 'movie',
-        //     label: 'Shorts',
-        //     route: 'shorts',
-        //     subItems: [
-        //       {
-        //         icon: 'play_circle',
-        //         label: 'Videos',
-        //         route: 'videos',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     icon: 'tv',
-        //     label: 'Long Form',
-        //     route: 'long-form',
-        //   },
-        // ],
+        unique_id: 8,
+        icon: 'guard-man',
+        label: 'Guard',
+        route: '/master/guard',
+        status: true,
       },
       {
-        icon: 'directions',
-        label: 'Line',
-        route: 'master/line',
-      },
-      {
-        icon: 'pin_drop',
-        label: 'Village',
-        route: 'master/village',
-      },
-      {
-        icon: 'person',
+        unique_id: 8,
+        icon: 'badge-pass-icon',
         label: 'Employee',
-        route: 'master/employee',
+        route: '/master/employee',
+        status: true,
       },
       {
-        icon: 'account_balance',
+        unique_id: 9,
+        icon: 'bank-building-icon',
         label: 'Bank',
-        route: 'master/bank',
+        route: '/master/bank',
+        status: true,
       }
     ],
   },
 
 ];
+
+export function setMenuStatusFromUser(menuItems: MenuItem[], userMenuItems: any[]): MenuItem[] {
+  return menuItems.map(item => {
+    // Find the matching user menu item by unique_id
+    const userItem = userMenuItems.find(u => u.unique_id === item.unique_id);
+
+    // If found, set status true, else false
+    const status = !!userItem;
+
+    // If both have subItems, recurse
+    let subItems;
+    if (item.subItems && userItem && userItem.subItems) {
+      subItems = setMenuStatusFromUser(item.subItems, userItem.subItems);
+    } else if (item.subItems) {
+      // If static has subItems but user does not, set all to false
+      subItems = item.subItems.map(sub => ({ ...sub, status: false }));
+    }
+
+    return {
+      ...item,
+      status,
+      subItems
+    };
+  });
+}

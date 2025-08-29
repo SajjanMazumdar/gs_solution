@@ -1,0 +1,85 @@
+@use '@angular/material' as mat;
+
+:host * {
+    transition: all 500ms ease-in-out;
+}
+$primary-color: #3498db;
+$font-stack: 'Roboto', sans-serif;
+
+.menu-item {
+    border-left: 5px solid;
+    border-left-color: rgba(0, 0, 0, 0);
+
+    @include mat.list-overrides((active-indicator-shape: 0px,
+            active-indicator-color: rgba(0, 0, 0, 0.05),
+            list-item-one-line-container-height: 56px));
+}
+
+.selected-menu-item {
+    border-left-color: #3e5fac;
+
+    @include mat.list-overrides((list-item-leading-icon-color: #3e5fac,
+            list-item-hover-leading-icon-color: #3e5fac,
+            list-item-label-text-color: #3e5fac,
+            list-item-focus-label-text-color: #3e5fac,
+            list-item-hover-label-text-color: #3e5fac,
+        ));
+}
+.mat-mdc-list-item-title.mdc-list-item__primary-text{
+    font-size: 13px !important;
+}
+.menu-item {
+
+    height: 42px;
+}
+
+.menu-item {
+  cursor: pointer;
+}
+.menu-item:not(.clickable) {
+  background-color: transparent;
+  color: #555;
+}
+.selected-menu-item {
+  border-left-color: #3e5fac !important;
+  font-weight: 600;
+  background-color: rgba(62, 95, 172, 0.05);
+}
+
+svg-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &.selected-icon {
+    ::ng-deep svg {
+      fill: #3e5fac;
+    }
+  }
+}
+.mdc-list-item__content{
+  font-size: 10px !important;
+}
+.mdc-list-item--with-leading-icon .mdc-list-item__start{
+  margin-right: 8px !important;
+  width: 20px;
+
+ 
+}
+
+
+
+.menu-name{
+  font-size: 10px !important;
+}
+
+
+.mdc-list-item--with-trailing-meta .mdc-list-item__end{
+  margin-right: 5px;
+  svg-icon{
+    width: 20 !important;
+    height: 20px !important;
+  }
+}

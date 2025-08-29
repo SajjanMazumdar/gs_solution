@@ -10,6 +10,8 @@ import { NumberonlyDirective } from './directives/numberonly.directive';
 import { RestrictlengthDirective } from './directives/restrictlength.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SvgIconComponent } from 'angular-svg-icon';
+import { MenufilterPipe } from './pipes/menufilter.pipe';
+import { MatfilterPipe } from './pipes/matfilter.pipe';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { SvgIconComponent } from 'angular-svg-icon';
     SharedRoutingModule,
     CustfilterPipe,
     ObjfilterPipe,
+    MatfilterPipe,
+    MenufilterPipe,
     NumberonlyDirective,
     RestrictlengthDirective,
     NgxMatSelectSearchModule,
@@ -31,6 +35,8 @@ import { SvgIconComponent } from 'angular-svg-icon';
   exports: [
     CustfilterPipe,
     ObjfilterPipe,
+    MatfilterPipe,
+    MenufilterPipe,
     NumberonlyDirective,
     RestrictlengthDirective,
     NgxMatSelectSearchModule,

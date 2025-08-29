@@ -1,0 +1,73 @@
+<div mat-dialog-title class="modal-header">
+    <h4>Employee Details</h4>
+    <mat-dialog-actions align="start">
+        <a mat-button mat-dialog-close class="popup-close">
+            <svg-icon src="/svg_icons/cancel.svg"
+                [svgStyle]="{'width.px':24,'height.px':24, 'fill':'rgba(103,103,103,1)'}"
+                viewBox="0 0 24 24"></svg-icon>
+        </a>
+    </mat-dialog-actions>
+
+</div>
+<mat-divider></mat-divider>
+<br>
+<mat-dialog-content class="mat-typography">
+        
+    <div class="row">
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Employee Code</mat-label>
+                <input matInput type="text" #emp_code_input [formControl]="emp_code" [lengthMax]="45">
+                @if(emp_code.hasError('required')) {
+                <mat-error> Employee Code Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Employee Name</mat-label>
+                <input matInput type="text" #emp_name_input [formControl]="emp_name" [lengthMax]="45">
+                @if(emp_name.hasError('required')) {
+                <mat-error> Employee Name Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Status</mat-label>
+                <mat-select #emp_status_select [formControl]="emp_status" (closed)="emp_status_select.focus()">
+                    <mat-option [value]=1>Active</mat-option>
+                    <mat-option [value]=0>In-Active</mat-option>
+                </mat-select>
+                @if(emp_status.hasError('required')) {
+                <mat-error> Employee Status Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+    </div>
+
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <div class="example-button-row" style="padding-right: 30px;">
+        <button mat-fab extended (click)="onSubmit()" style=" background: #3085d6; height: 34px; color: #fff;">
+            @if(emp_id == 0) {<span>Submit</span>}
+            @else {<span>Update</span>}
+        </button>
+
+        <button mat-fab extended (click)="onReset()" style=" background: #f5b91e;height: 34px; color: #000;">
+            Reset
+        </button>
+
+        @if(emp_id > 0) {
+        <button mat-fab extended (click)="onDelete()" style=" background: red;height: 34px; color: #fff;">
+            Delete
+        </button>
+        }
+
+    </div>
+
+</mat-dialog-actions>

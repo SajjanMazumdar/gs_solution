@@ -1,16 +1,17 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 
-import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { routes } from './app.routes';
 
-import { MaterialModule } from './material.module';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
-import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { MaterialExtensionsModule } from './material-extension.module';
+import { MaterialModule } from './material.module';
 import { SharedModule } from './shared/shared.module';
+import { tokenInterceptor } from './auth/interceptor/token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,16 +24,27 @@ export const appConfig: ApplicationConfig = {
       }),
       withComponentInputBinding()
     ), 
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([tokenInterceptor])),
     provideClientHydration(withEventReplay()),
-    provideNativeDateAdapter(),
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+
+    // provideNativeDateAdapter(),
+    // { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+
+    // provideMomentDatetimeAdapter(),
+    // {
+    //   provide: DateAdapter,
+    //   useClass: MomentDateAdapter,
+    //   deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    // },
+    // { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+
     provideAnimations(),
     provideAngularSvgIcon(),
     importProvidersFrom(
       FormsModule,
       ReactiveFormsModule,
       MaterialModule,
+      MaterialExtensionsModule,
       SharedModule
     )
   ]

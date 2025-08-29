@@ -1,4 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use '@angular/material' as mat;
+
+mat-sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+mat-sidenav-content,
+mat-sidenav {
+  transition: all 500ms ease-in-out;
+}
+
+mat-sidenav {
+  @include mat.sidenav-overrides((container-divider-color: rgba(0, 0, 0, 0.1),
+      container-shape: 0px,
+      container-background-color: white,
+    ));
+}
+app-login{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mdc-list-item--with-leading-icon:hover .mdc-list-item__start {
+  color: #3e5fac !important;
+}
+.mat-mdc-nav-list .mat-mdc-list-item.mdc-list-item--activated{
+  color: #3e5fac !important;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.mdc-tooltip__surface {
+  color: black !important;
+  background-color: white !important;
+  border: 1px solid black;
+  border-radius: 4px;
+}

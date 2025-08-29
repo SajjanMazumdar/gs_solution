@@ -1,0 +1,234 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
+import { environment as env } from '../../../environments/environment';
+import { GUARD_DATA } from '../dataVault/guard';
+import { LINE_DATA } from '../dataVault/line';
+import { VILLAGE_DATA } from '../dataVault/village';
+import { EMPLOYEE_DATA } from '../dataVault/employee';
+import { BANK_DATA } from '../dataVault/bank';
+import { SETTER_DATA } from '../dataVault/setter';
+import { HATCHER_DATA } from '../dataVault/hatcher';
+import { VACCINE_DATA } from '../dataVault/vaccine';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MasterService {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
+  constructor(
+    private http: HttpClient
+  ) {
+
+  }
+
+  //#region Guard Master API
+  public bs_GuardList: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  getGuardList(): Observable<any> {
+    if (env.gui_mode) {
+      this.bs_GuardList.next(<any>{
+        "error": false,
+        "result": GUARD_DATA
+      });
+      return of(true);
+    } else {
+      return this.http.get(env.masterUrl + 'guard/list', this.httpOptions)
+        .pipe(map((resp: any) => {
+          this.bs_GuardList.next(<any>resp);
+          return true;
+        }), catchError(err => { return of(err); }));
+    }
+  }
+
+  createGuard(data: any): Observable<any> {
+    if (env.gui_mode) {
+      data.guard_id = GUARD_DATA.length + 1;
+      GUARD_DATA.push(data);
+      return of({
+        "error": false,
+        "result": [GUARD_DATA[GUARD_DATA.length - 1]]
+      });
+    } else {
+      return this.http.post(env.masterUrl + 'guard/create', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+
+  }
+
+  updateGuard(data: any): Observable<any> {
+    if (env.gui_mode) {
+      let index = GUARD_DATA.findIndex((guard) => guard.guard_id == data.guard_id);
+      GUARD_DATA[index] = data;
+      return of({
+        "error": false,
+        "result": [GUARD_DATA[index]]
+      });
+    } else {
+      return this.http.put(env.masterUrl + 'guard/update', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+  }
+
+  deleteGuard(data: any): Observable<any> {
+    if (env.gui_mode) {
+      let index = GUARD_DATA.findIndex((guard) => guard.guard_id == data.guard_id);
+      GUARD_DATA.splice(index, 1);
+      return of(true);
+    } else {
+      return this.http.put(env.masterUrl + 'guard/delete', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+  }
+  //#endregion
+  
+  //#region Employee Master API
+  public bs_EmployeeList: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  getEmployeeList(): Observable<any> {
+    if (env.gui_mode) {
+      this.bs_EmployeeList.next(<any>{
+        "error": false,
+        "result": EMPLOYEE_DATA
+      });
+      return of(true);
+    } else {
+      return this.http.get(env.masterUrl + 'employee/list', this.httpOptions)
+        .pipe(map((resp: any) => {
+          this.bs_EmployeeList.next(<any>resp);
+          return true;
+        }), catchError(err => { return of(err); }));
+    }
+  }
+
+  createEmployee(data: any): Observable<any> {
+    if (env.gui_mode) {
+      data.emp_id = EMPLOYEE_DATA.length + 1;
+      EMPLOYEE_DATA.push(data);
+      return of({
+        "error": false,
+        "result": [EMPLOYEE_DATA[EMPLOYEE_DATA.length - 1]]
+      });
+    } else {
+      return this.http.post(env.masterUrl + 'employee/create', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+
+  }
+
+  updateEmployee(data: any): Observable<any> {
+    if (env.gui_mode) {
+      let index = EMPLOYEE_DATA.findIndex((employee) => employee.emp_id == data.emp_id);
+      EMPLOYEE_DATA[index] = data;
+      return of({
+        "error": false,
+        "result": [EMPLOYEE_DATA[index]]
+      });
+    } else {
+      return this.http.put(env.masterUrl + 'employee/update', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+  }
+
+  deleteEmployee(data: any): Observable<any> {
+    if (env.gui_mode) {
+      let index = EMPLOYEE_DATA.findIndex((employee) => employee.emp_id == data.emp_id);
+      EMPLOYEE_DATA.splice(index, 1);
+      return of(true);
+    } else {
+      return this.http.put(env.masterUrl + 'employee/delete', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+  }
+  //#endregion
+
+  //#region Bank Master API
+  public bs_BankList: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  getBankList(): Observable<any> {
+    if (env.gui_mode) {
+      this.bs_BankList.next(<any>{
+        "error": false,
+        "result": BANK_DATA
+      });
+      return of(true);
+    } else {
+      return this.http.get(env.masterUrl + 'bank/list', this.httpOptions)
+        .pipe(map((resp: any) => {
+          this.bs_BankList.next(<any>resp);
+          return true;
+        }), catchError(err => { return of(err); }));
+    }
+  }
+
+  createBank(data: any): Observable<any> {
+    if (env.gui_mode) {
+      data.bank_id = BANK_DATA.length + 1;
+      BANK_DATA.push(data);
+      return of({
+        "error": false,
+        "result": [BANK_DATA[BANK_DATA.length - 1]]
+      });
+    } else {
+      return this.http.post(env.masterUrl + 'bank/create', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+
+  }
+
+  updateBank(data: any): Observable<any> {
+    if (env.gui_mode) {
+      let index = BANK_DATA.findIndex((bank) => bank.bank_id == data.bank_id);
+      BANK_DATA[index] = data;
+      return of({
+        "error": false,
+        "result": [BANK_DATA[index]]
+      });
+    } else {
+      return this.http.put(env.masterUrl + 'bank/update', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+  }
+
+  deleteBank(data: any): Observable<any> {
+    if (env.gui_mode) {
+      let index = BANK_DATA.findIndex((bank) => bank.bank_id == data.bank_id);
+      BANK_DATA.splice(index, 1);
+      return of(true);
+    } else {
+      return this.http.put(env.masterUrl + 'bank/delete', data, this.httpOptions)
+        .pipe(map(res => {
+          return res;
+        }), catchError(err => of(err))
+        );
+    }
+  }
+  //#endregion
+}

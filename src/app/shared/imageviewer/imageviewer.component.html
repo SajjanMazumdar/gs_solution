@@ -1,0 +1,58 @@
+<div class="gallery-lightbox-container">
+    <div class="gallery">
+        @for(data of galleryData; track $index) {
+            <div class="gallery-img">
+                {{data.imageAlt}}
+                <img (click)="onPreviewImage($index)" src="{{data.imageSrc}}" alt="{{data.imageAlt}}">
+            </div>
+        }        
+    </div>
+    @if(showMask) {
+        <div class="lightbox" @animation2>
+            @if(showCount) {
+                <span class="count">
+                    {{currentIndex + 1}}/{{totalImageCount}}<br>
+                    {{galleryData[currentIndex].imageAlt}}
+                </span>
+            }
+            @if(previewImage) {
+                <button class="close-btn" (click)="onClosePreview()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path
+                            d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" 
+                            fill="rgba(255,255,255,1)" />
+                    </svg>
+                </button>
+            }
+            @if(controls) {
+                <button class="btn-lightbox-carousel btn-prev" (click)="prev()">
+                    <div class="icon-lightbox-carousel icon-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z"
+                                fill="rgba(255,255,255,1)" />
+                        </svg>
+                    </div>
+                </button>
+                <button class="btn-lightbox-carousel btn-next" (click)="next()">
+                    <div class="icon-lightbox-carousel icon-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9H8v2h4v3l4-4-4-4v3z"
+                            fill="rgba(255,255,255,1)" />
+                    </svg>
+                    </div>
+                </button>
+            }
+            @if(previewImage) {
+                <div [@animation]="{value: 'visible'}" (@animation.done)="onAnimationEnd($event)"
+                    class="lightbox-img">
+                    <img [src]="currentLightboxImage.imageSrc" [alt]="currentLightboxImage.imageAlt">
+                </div>
+            }
+            
+        </div>
+    }
+    
+</div>

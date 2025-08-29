@@ -20,9 +20,10 @@ export class NumberonlyDirective {
     "Copy",
     "Paste"
   ];
-  @Input() decimal ? = false;
-  @Input() digit ? = 2;
-  @Input() negative ? = false;
+  @Input() decimal? = false;
+  @Input() digit? = 2;
+  @Input() negative? = false;
+  @Input() length?: number;
 
   inputElement: HTMLElement;
 
@@ -31,6 +32,10 @@ export class NumberonlyDirective {
   }
 
   @HostListener("keydown", ["$event"]) onKeyDown(e: KeyboardEvent) {
+
+    const value: string = this.el.nativeElement.value;
+    const selectionStart = this.el.nativeElement.selectionStart;
+    const selectionEnd = this.el.nativeElement.selectionEnd;
 
     if (
       this.navigationKeys.indexOf(e.key) > -1 ||
@@ -44,61 +49,99 @@ export class NumberonlyDirective {
       (e.key === "x" && e.metaKey === true) ||
       (this.decimal && e.key === "." && this.decimalCounter < 1)
     ) {
-     return;
+      return;
     }
-    
-    if (e.key === " " || (this.negative ? false : isNaN(Number(e.key)))  || (this.digit ? this.decimalCounter >= this.digit : false)) {
+
+    if (this.length && !isNaN(Number(e.key)) && !e.ctrlKey && !e.metaKey) {
+      let newValue = value.substring(0, selectionStart) + e.key + value.substring(selectionEnd);
+      let digitsOnly = newValue.replace(/[^0-9]/g, "");
+      if (digitsOnly.length > this.length) {
+        e.preventDefault();
+        return;
+      }
+    }
+
+    if (e.key === " " || (this.negative ? false : isNaN(Number(e.key))) || (this.digit ? this.decimalCounter >= this.digit : false)) {
       e.preventDefault();
     }
 
   }
 
   @HostListener("keyup", ["$event"]) onKeyUp(e: KeyboardEvent) {
-    if(this.el.nativeElement.value == '') this.decimalCounter = 0;
+    if (this.el.nativeElement.value == '') this.decimalCounter = 0;
     if (!this.decimal) {
       return;
     } else {
-      this.decimalCounter = this.el.nativeElement.value.split(".")[1].length;      
+      this.decimalCounter = this.el.nativeElement.value.split(".")[1].length;
     }
   }
 
   @HostListener("paste", ["$event"]) onPaste(event: ClipboardEvent) {
     event.preventDefault();
     const pastedInput: string = event.clipboardData?.getData("text/plain") || '';
+    let filtered = pastedInput;
+
+    // if (!this.decimal) {
+    //   document.execCommand(
+    //     "insertText",
+    //     false,
+    //     pastedInput.replace(/[^0-9]/g, "")
+    //   );
+    // } else if (this.isValidDecimal(pastedInput)) {
+    //   document.execCommand(
+    //     "insertText",
+    //     false,
+    //     pastedInput.replace(/[^0-9.]/g, "")
+    //   );
+    // }
 
     if (!this.decimal) {
-      document.execCommand(
-        "insertText",
-        false,
-        pastedInput.replace(/[^0-9]/g, "")
-      );
+      filtered = pastedInput.replace(/[^0-9]/g, "");
     } else if (this.isValidDecimal(pastedInput)) {
-      document.execCommand(
-        "insertText",
-        false,
-        pastedInput.replace(/[^0-9.]/g, "")
-      );
+      filtered = pastedInput.replace(/[^0-9.]/g, "");
     }
+
+    if (this.length) {
+      const currentValue = this.el.nativeElement.value.replace(/[^0-9]/g, "");
+      const allowed = this.length - currentValue.length;
+      filtered = filtered.substring(0, allowed);
+    }
+
+    document.execCommand("insertText", false, filtered);
   }
 
   @HostListener("drop", ["$event"]) onDrop(event: DragEvent) {
     event.preventDefault();
     const textData = event.dataTransfer?.getData("text") || '';
     this.inputElement.focus();
+    let filtered = textData;
 
+    // if (!this.decimal) {
+    //   document.execCommand(
+    //     "insertText",
+    //     false,
+    //     textData.replace(/[^0-9]/g, "")
+    //   );
+    // } else if (this.isValidDecimal(textData)) {
+    //   document.execCommand(
+    //     "insertText",
+    //     false,
+    //     textData.replace(/[^0-9.]/g, "")
+    //   );
+    // }
     if (!this.decimal) {
-      document.execCommand(
-        "insertText",
-        false,
-        textData.replace(/[^0-9]/g, "")
-      );
+      filtered = textData.replace(/[^0-9]/g, "");
     } else if (this.isValidDecimal(textData)) {
-      document.execCommand(
-        "insertText",
-        false,
-        textData.replace(/[^0-9.]/g, "")
-      );
+      filtered = textData.replace(/[^0-9.]/g, "");
     }
+
+    if (this.length) {
+      const currentValue = this.el.nativeElement.value.replace(/[^0-9]/g, "");
+      const allowed = this.length - currentValue.length;
+      filtered = filtered.substring(0, allowed);
+    }
+
+    document.execCommand("insertText", false, filtered);
   }
 
   isValidDecimal(string: string): boolean {

@@ -1,0 +1,12 @@
+<!-- <div class="sidenav-header">
+  <img [width]="profilePicSize()" [height]="profilePicSize()" src="https://picsum.photos/536/354" />
+  <div class="header-text" [class.hide-header-text]="collapsed()">
+    <h2>Master</h2>
+    <p>Prototype</p>
+  </div>
+</div> -->
+<mat-nav-list>
+  @for (item of menuItems | menufilter; track item.label) {
+    <app-menulist [item]="item" [collapsed]="collapsed()" />
+  }
+</mat-nav-list>

@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { environment as env } from '../../../environments/environment';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import Swal from 'sweetalert2';
-import { SnackbarComponent } from '../snackbar/snackbar.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { STATE_DATA } from '../../master/dataVault/state';
+import { environment as env } from '../../../environments/environment';
 import { DISTRICT_DATA } from '../../master/dataVault/district';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { STATE_DATA } from '../../master/dataVault/state';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -22,16 +24,76 @@ export class GlobalService {
     })
   };
 
-  isLogin: boolean = false;
-  collapsed = signal(false);
+  collapsed = signal(true);
+  isManualToggle = signal(false);
 
-  public  fullScreen_Active: boolean = false;
-  
+  public fullScreen_Active: boolean = false;
+
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
+    private router: Router
   ) {
+    
+  }
 
+  cur_url = {
+    setData: (url: any) => {
+      localStorage.setItem('cur_url', url);
+    },
+    getData: () => {
+      let cur_url = '/';
+      if (localStorage.getItem('cur_url')) cur_url = localStorage.getItem('cur_url') || '{}';
+      return cur_url;
+    },
+    clearData: () => {
+      localStorage.removeItem('cur_url');
+    },
+    goTo: (url: any) => {
+      this.router.navigate([url], { skipLocationChange: false });
+    }
+  }
+
+  isLogin = {
+    setData: (obj: any) => {
+      localStorage.setItem('isLogin', JSON.stringify(obj));
+    },
+    getData: () => {
+      let isLogin = false;
+      if (localStorage.getItem('isLogin')) isLogin = JSON.parse(localStorage.getItem('isLogin') || '{}');
+      return isLogin == false ? false : true;
+    },
+    clearData: () => {
+      localStorage.removeItem('isLogin');
+    }
+  }
+
+  currentUser = {
+    userId: () =>{
+      let currentUser: any;
+      if (localStorage.getItem('currentUser')) currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      return currentUser.user.emp_id;
+    },
+    setData: (obj: any) => {
+      localStorage.setItem('currentUser', JSON.stringify(obj));
+    },
+    getData: () => {
+      let currentUser: any;
+      if (localStorage.getItem('currentUser')) currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      return currentUser;
+    },
+    isLogin: () => {
+      let currentUser: boolean = false;
+      if (localStorage.getItem('currentUser')) currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      return currentUser == false ? false : true;
+    },
+    clearData: () => {
+      localStorage.removeItem('currentUser');
+    }
+  }
+
+  formatDateOnly(date: any): string {
+    return date ? formatDate(date, 'yyyy-MM-dd', 'en-US') : '';
   }
 
   popupMsg(icon?: any, title?: any, text?: any, err_code?: any) {

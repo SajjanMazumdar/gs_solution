@@ -1,0 +1,290 @@
+section {
+  width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 667px) {
+      flex-direction: column;
+        }
+  .right-dv{
+        display: flex ;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+        height: 100%;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        @media screen and (max-width: 991px) {
+          width: 100%;
+          padding: 10px;
+            }
+    h2{
+      font-size: 24px;
+      margin: 4px 0px 10px 0px;
+      text-align: center;
+    }
+    a{
+      text-decoration: none;
+      color: red;
+      font-size: 14px;
+    }
+  }
+  .left-dv{
+    background-color: #3e5fac;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+    flex-direction: column;
+    @media screen and (max-width: 991px) {
+      width: 100%;
+        }
+    img{
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      @media screen and (max-width: 991px) {
+        height: auto;
+          }
+    }
+  }
+
+}
+  .example-label {
+
+    font-size: 14px;
+   
+  }
+  
+  .example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 15px 0px 0px 0px;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 0px 8px 0;
+    background-color: #3e5fac;
+    width: 100%;
+    height: 42px;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 140px;
+    background-color: #3e5fac;
+  }
+  .right-content{
+    box-shadow: 0px 0px 6px rgba(162, 162, 162, .7);
+    padding:16px;
+    width: 500px;
+    box-sizing: border-box;
+    max-width: 100%;
+    border-radius: 6px;
+    background-color: #fff;
+    height: 438px;
+    position: relative;
+    @media screen and (max-width: 991px) {
+      padding:10px;
+   height: 380px;
+        }
+  }
+  .mat-mdc-form-field{
+    width: 100%;
+  }
+  .full-dv{
+    width:90%;
+    margin: 0 auto;
+    display: flex;
+    box-shadow: 0px 0px 6px rgba(162, 162, 162, .7);
+    border-radius: 6px;
+    overflow: hidden;
+    align-items: center;
+    min-height: 480px;
+    @media screen and (max-width: 991px) {
+    
+      flex-direction: column;
+        }
+  }
+   /* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.dv-flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.mtop{
+  margin-top: 10px;
+}
+.mbottom{
+  margin-bottom: 10px;
+}
+
+
+.custom-style .mat-mdc-text-field-wrapper {
+height: 42px !important;
+    flex: auto;
+    will-change: auto;
+    font-size: 14px;
+    line-height: 38px;
+    margin-top: 10px;
+    margin-left: 4px;
+}
+.custom-style .mat-mdc-form-field-infix{
+padding:0px !important;
+}
+.custom-style .mat-form-field-label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* Vertically center only when label is not floating */
+.custom-style .mat-form-field-label:not(.mat-form-field-empty) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Optional: Ensure the input has consistent height */
+.custom-style .mat-mdc-text-field-wrapper {
+  height: 41px !important;
+  font-size: 14px;
+  line-height: 41px;
+  
+  /* Match height for vertical alignment */
+  margin-top: 10px;
+  margin-left: 4px;
+}
+
+.custom-style .mat-mdc-form-field-infix {
+  padding: 0px !important;
+}
+
+.custom-style .mat-mdc-text-field-wrapper {
+  height: 41px !important;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+}
+
+/* Align input vertically */
+.custom-style .mat-mdc-form-field-infix {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Vertically center label only when it's not floating */
+.custom-style .mat-mdc-form-field:not(.mat-mdc-form-field-should-float) .mdc-floating-label {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+.mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 41px !important;
+    pointer-events: all;
+    will-change: auto;
+    margin-top: -9px !important;
+    font-size: 14px !important;
+}
+
+.login-label {
+  background: #c21d00;
+  padding: 8px 20px;
+  color: #fff;
+  font-size: 14px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+
+  mat-label {
+    padding-left: 10px;
+  }
+}

@@ -1,0 +1,78 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-clip-rotate-pulse">
+    <p style="font-size: 16px; color: white">Loading...</p>
+</ngx-spinner>
+<section>
+  <div class="full-dv">
+    <div class="left-dv">
+      <img src="{{login_image}}">
+    </div>
+    <div class="right-dv">
+      <div class="right-content">
+        <h2>Welcome to AAPL ERP</h2>
+
+        <mat-form-field class="custom-style" appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input matInput type="text" #user_name_input [formControl]="user_name" [lengthMax]="45" (keyup.enter)="login()">
+          <!-- @if (user_name.value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="user_name.reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          } -->
+          @if(user_name.hasError('required')) {
+          <mat-error> User Name Required </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="custom-style" appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="password_visible ? 'text' : 'password'" [formControl]="password" [lengthMax]="12" (keyup.enter)="login()">
+          <!-- @if (value) { -->
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="password_visible = !password_visible">
+            @if(password_visible) {
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M1.181 12C2.121 6.88 6.608 3 12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9zM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+              </svg>
+            </span>
+            } @else {
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M4.52 5.934L1.393 2.808l1.415-1.415 19.799 19.8-1.415 1.414-3.31-3.31A10.949 10.949 0 0 1 12 21c-5.392 0-9.878-3.88-10.819-9a10.982 10.982 0 0 1 3.34-6.066zm10.237 10.238l-1.464-1.464a3 3 0 0 1-4.001-4.001L7.828 9.243a5 5 0 0 0 6.929 6.929zM7.974 3.76C9.221 3.27 10.58 3 12 3c5.392 0 9.878 3.88 10.819 9a10.947 10.947 0 0 1-2.012 4.592l-3.86-3.86a5 5 0 0 0-5.68-5.68L7.974 3.761z" />
+              </svg>
+            </span>
+            }
+          </button>
+          <!-- } -->
+          @if(password.hasError('required')) {
+          <mat-error> Password Required </mat-error>
+          }
+        </mat-form-field>
+
+        <div class="dv-flex mtop mbottom">
+          <label class="container">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+            Remember Me
+          </label>
+          <a href="">Forgot password</a>
+        </div>
+
+        @if(invalidStatus) {
+        <div class="login-label">
+          <mat-icon>error</mat-icon>
+          <mat-label> {{invalidMsg}} </mat-label>
+        </div>
+        }        
+
+        <div class="example-button-row">
+          <button mat-flat-button (click)="login()">Login</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

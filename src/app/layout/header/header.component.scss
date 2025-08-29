@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+mat-toolbar {
+   border-bottom:1px solid #ddd;
+    z-index: 5;
+    box-shadow: 0px 0px 6px rgba(164,164,162,.7);
+    background-color: #fff;
+    justify-content: space-between;
+        height: 46px !important;
+}
+
+.content {
+    padding: 0px;
+}
+.sidenav-header{
+width: 36px;
+    height: 36px;
+    margin-right: 21px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    p{
+        margin: 0px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+}
+.mat-mdc-menu-panel{
+      width: 260px;
+    background-color: #fff !important;
+    margin-top: 5px;
+
+}
+.menu-button {
+     
+    .mat-mdc-menu-item-text{
+    display: flex;
+    align-items: center;
+
+   
+}
+ svg{
+        margin-right: 8px;
+    }
+}
+.menu-button{
+    min-height: 42px !important;
+}

@@ -1,0 +1,31 @@
+<a mat-list-item
+   class="menu-item"
+   [class.selected-menu-item]="isActive()" 
+   [style.--mat-list-list-item-leading-icon-start-space]="indentation()"
+   [routerLink]="item().route || null"
+   (click)="item().subItems ? nestedItemOpen.set(!nestedItemOpen()) : null"
+   [activated]="isActive()">
+
+  <svg-icon 
+    [src]="'/svg_icons/' + item().icon + '.svg'"
+    [class.selected-icon]="isActive()"
+    matListItemIcon>
+  </svg-icon>
+
+  @if(!collapsed()) {
+    <span matListItemTitle class="menu-name">{{ item().label }}</span>
+  }
+  @if(item().subItems) {
+    <span matListItemMeta>
+      <svg-icon [src]="'/svg_icons/' + (nestedItemOpen() ? 'expand_less' : 'expand_more') + '.svg'"></svg-icon>
+    </span>
+  }
+</a>
+
+@if (nestedItemOpen()) {
+  <div [@expandContractMenu]>
+    @for(subItem of item().subItems | menufilter; track subItem.route) {
+      <app-menulist [item]="subItem" [routeHistory]="routeHistory() + '/' + item().route" [collapsed]="collapsed()" />
+    }
+  </div>
+}
