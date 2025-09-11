@@ -15,10 +15,10 @@
     </mat-dialog-actions>
 </div>
 <mat-divider></mat-divider>
-<br>
+
 <mat-dialog-content class="mat-typography">
-    <div class="row">        
-        <div class="col-4">
+    <!-- <div class="row">
+      <div class="col-4">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Guard Code</mat-label>
                 <input matInput type="text" #guard_code_input [formControl]="guard_code" [lengthMax]="45">
@@ -47,11 +47,172 @@
                 <mat-error> Guard Status Required </mat-error>
                 }
             </mat-form-field>
+        </div> 
+    </div> -->
+    <div class="row">       
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Ticket Number</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Ticket Number Required </mat-error>
+                }
+            </mat-form-field>
         </div>
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Posting Site Name</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Posting Site Name Required </mat-error>
+                }
+            </mat-form-field>
+        </div> 
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Postfor</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Postfor Required </mat-error>
+                }
+            </mat-form-field>
+        </div> 
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Guard Name</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Guard Name Required </mat-error>
+                }
+            </mat-form-field>
+        </div>                    
     </div>
-
-
-
+<div class="row">
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Father's Name</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Father's Name Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Date of Birth Required </mat-error>
+                }
+            </mat-form-field>
+        </div>   
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Birth Place</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error>Birth Place Required </mat-error>
+                }
+            </mat-form-field>
+        </div>    
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Height</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error>Height Required </mat-error>
+                }
+            </mat-form-field>
+        </div>                             
+</div>
+<div class="row">
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Contact Number</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Contact Number Name Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Qualification</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Qualification Required </mat-error>
+                }
+            </mat-form-field>
+        </div>   
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Married Status</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error>Married Status Required </mat-error>
+                }
+            </mat-form-field>
+        </div>    
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Experience</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error>Experience Required </mat-error>
+                }
+            </mat-form-field>
+        </div>                             
+</div>
+<div class="row">
+        <div class="col-6 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Current Address</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Current Address Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-6 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Permanent Address</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Permanent Address Required </mat-error>
+                }
+            </mat-form-field>
+        </div>   
+                          
+</div>
+<div class="row">
+        <div class="col-4 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Identification Marks</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Current Address Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Date Of Joining</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Permanent Address Required </mat-error>
+                }
+            </mat-form-field>
+        </div>   
+        <div class="col-4 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Branch Place</mat-label>
+                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
+                @if(guard_name.hasError('required')) {
+                <mat-error> Permanent Address Required </mat-error>
+                }
+            </mat-form-field>
+        </div>                            
+</div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
