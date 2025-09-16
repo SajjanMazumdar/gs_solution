@@ -9,6 +9,18 @@ const routes: Routes = [
     canActivate: [menuRedirectGuard],
     children: [
       {
+        path: 'branch',        
+        loadComponent: () => import('./branch/branch.component').then(m => m.BranchComponent)
+      },
+      {
+        path: 'site',        
+        loadComponent: () => import('./line/line.component').then(m => m.LineComponent)
+      },
+      {
+        path: 'rank',        
+        loadComponent: () => import('./rank/rank.component').then(m => m.RankComponent)
+      },
+      {
         path: 'employee',        
         loadComponent: () => import('./employee/employee.component').then(m => m.EmployeeComponent)
       },

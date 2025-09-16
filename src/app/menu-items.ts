@@ -24,6 +24,27 @@ export const menuItems: MenuItem[] = [
     status: true,
     subItems: [
       {
+        unique_id: 5,
+        icon: 'classification-icon',
+        label: 'Branch',
+        route: '/master/branch',
+        status: true,
+      },
+      {
+        unique_id: 6,
+        icon: 'site',
+        label: 'Site',
+        route: '/master/site',
+        status: true,
+      },
+      {
+        unique_id: 7,
+        icon: 'land-location-icon',
+        label: 'Rank',
+        route: '/master/rank',
+        status: true,
+      },
+      {
         unique_id: 8,
         icon: 'guard-man',
         label: 'Guard',

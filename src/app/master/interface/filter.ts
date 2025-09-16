@@ -33,3 +33,11 @@ export interface VaccineFilter  {
     search: string | null,
     status: number | null
 }
+export interface BranchFilter  {
+    search: string | null,
+    status: number | null
+}
+export interface RankFilter  {
+    search: string | null,
+    status: number | null
+}

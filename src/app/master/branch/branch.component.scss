@@ -1,0 +1,488 @@
+@use '../../../../public/scss/swal.scss' as *;
+
+@use '../../../../public/scss/mattable.scss' as *;
+.topd{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-header a{
+  color: #3e5fac !important;
+  padding: 5px 15px;
+  border-radius: 6px;
+  background-color: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.topd h2{
+  font-size: 20px;
+  margin: 0px 0px;
+  font-weight: 500;
+}
+/* Vertically center only when label is not floating */
+.custom-style3 .mat-form-field-label:not(.mat-form-field-empty) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Optional: Ensure the input has consistent height */
+.custom-style3 .mat-mdc-text-field-wrapper {
+  height: 41px !important;
+  font-size: 14px;
+  line-height: 41px;
+  
+  /* Match height for vertical alignment */
+  margin-top: 10px;
+  margin-left: 4px;
+}
+
+.custom-style3 .mat-mdc-form-field-infix {
+  padding: 0px !important;
+}
+
+.custom-style3 .mat-mdc-text-field-wrapper {
+  height: 41px !important;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 0px;
+  display: flex;
+  align-items: center;
+}
+
+/* Align input vertically */
+.custom-style3 .mat-mdc-form-field-infix {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Vertically center label only when it's not floating */
+.custom-style3 .mat-mdc-form-field:not(.mat-mdc-form-field-should-float) .mdc-floating-label {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+.modal-header{
+    display: flex ;
+        align-items: center;
+        justify-content: flex-start;
+        height: 42px;
+        padding: 0px 20px;
+        background: #fff;
+        h4{
+            font-size: 16px;
+            margin: 0px;
+            font-weight: 500;
+        }
+        a{
+            width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    background: #fff !important;
+    min-width: 36px;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    padding-top: 12px;
+:hover{
+      background: #fff !important;
+    }
+        }
+}
+.mat-mdc-dialog-surface.mdc-dialog__surface {
+  border-radius: 4px !important;
+}
+.mat-divider{
+border-top-color: #ddd;
+}
+.mat-mdc-dialog-actions{
+    padding: 0px;
+}
+.full-screen-modal .mat-dialog-container {
+
+    width: 80% !important;
+    height: 80% !important;
+    @media screen and (max-width: 660px) {
+      
+      width: 100% !important;
+  }
+  
+  }
+  .mat-mdc-dialog-actions{
+    position: static;
+  }
+  .row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex
+;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
+    .col-6 {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 3px;
+        
+    }
+
+@media (min-width: 768px) {
+    .col-6 {
+        flex: 0 0 auto;
+        width: 49%;
+    }
+}
+.mat-mdc-form-field{
+    width: 100%;
+}
+.dropzone {
+    height: 80px;
+    display: table;
+    width: 100%;
+    background-color: #eee;
+    border: dashed 1px #aaa;
+    border-radius: 6px;
+    margin-top: -8px;
+    label{
+      font-size: 14px;
+    }
+}
+
+input[type="file"]{
+  display:none;
+}
+
+.textLink{
+  background-color: #f45e61;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+ .text-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .file-drop-drag{
+    width: 99%;
+  }
+  .centered {
+    font-family: sans-serif;
+    font-size: 1.3em;
+    text-align:center;
+  }
+
+
+.fileItem{
+  width: calc(25% - 6px);
+  overflow:hidden;
+  height: fit-content;
+  margin:3px;
+  padding: 10px;
+  display:block;
+  position:relative;
+  float:left;
+  border:2px dashed #778899;
+  border-radius:5px;
+  transition: .3s ease;
+}
+  .fileItem:hover{
+    border:2px solid #c33838;
+    background-color: #c33838bf;
+  }
+  .fileItem:hover .fileItemIcon::before{
+    content: "\f00d";
+    color: whitesmoke;
+  }
+  .fileItem:hover .fileItemText{
+    color: whitesmoke;
+  }
+.fileItemIconDiv{
+  text-align:center;
+}
+.fileItemIcon::before{
+  font-style: normal;
+  content: "\f15b";
+  color:#778899;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+.fileItemText{
+  text-align:center;
+  margin-top:10px;
+  height: 40px;
+}
+@media (min-width: 768px) {
+    .col-12 {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 3px;
+    }
+}
+.mat-elevation-z8 table{
+    width: 100%;
+    margin-top: 20px;
+    tr th,td{
+        border-bottom: 1px solid #ddd;
+        padding: 10px 8px;
+        border-collapse: collapse;
+        font-size: 12px;
+    }
+    tr th{
+        background-color: #f2f2f2;
+        border-collapse: collapse;
+    }
+}
+.actions button {
+    padding: 6px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .edit-btn {
+    background-color: #1abc9c;
+    color: white;
+  }
+
+  .delete-btn {
+    background-color: #ff3366;
+    color: white;
+  }
+ /* Customize the label (the container) */
+ .container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.example-container {
+
+  width: 550px;
+  max-width: 100%;
+  overflow: auto;
+}
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+ 
+  width: 70% !important;
+  height: 80% !important;
+}
+@media (max-width: 599px) {
+  .cdk-overlay-pane.mat-mdc-dialog-panel {
+      max-width: var(--mat-dialog-container-small-max-width, calc(100vw - 32px));
+      width: 100% !important;
+  }
+}
+.table-content{
+  overflow: auto;
+}
+.flex-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #faf9fd;
+  height: 56px;
+}
+@media (min-width: 992px) {
+    .col-3 {
+        flex: 0 0 auto;
+        width: 24%;
+        padding: 3px;
+    }
+        .col-4 {
+        flex: 0 0 auto;
+        width: 32%;
+        padding: 3px;
+    }
+      .col-2 {
+        flex: 0 0 auto;
+        width: 19%;
+        padding: 3px;
+    }
+}
+.mtop{
+  margin-top: -25px;
+}
+@media (min-width: 992px) {
+    .col-9 {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+}
+.example-button-row button{
+  border-radius: 4px !important;
+}
+.row{
+  justify-content: space-between;
+}
+.custom-style2{
+  width: 100%;
+  .mat-mdc-text-field-wrapper{
+    height: 40px !important;
+  }
+}
+::ng-deep mat-form-field.custom-style .mat-form-field-infix {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+::ng-deep mat-form-field.custom-style input.mat-input-element {
+  height: 36px;
+  font-size: 16px;
+  line-height: 48px;
+}
+mat-form-field.custom-input .mat-form-field-infix {
+  padding: 0 12px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-style .mat-mdc-text-field-wrapper {
+height: 42px !important;
+    flex: auto;
+    will-change: auto;
+    font-size: 14px;
+    line-height: 38px;
+    margin-top: 10px;
+    margin-left: 4px;
+}
+.custom-style .mat-mdc-form-field-infix{
+padding:0px !important;
+}
+.custom-style .mat-form-field-label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 41px !important;
+    pointer-events: all;
+    will-change: auto;
+    margin-top: -9px !important;
+    font-size: 14px !important;
+}
+
+.custom-style input.mat-input-element {
+  height: 36px;
+  line-height: 36px;
+  font-size: 16px;
+}
+.custom-style .mat-mdc-text-field-wrapper {
+height: 41px !important;
+    flex: auto;
+    will-change: auto;
+    font-size: 14px;
+    line-height: 40px;
+    margin-top: 22px;
+    margin-left: 4px;
+}
+.custom-style .mat-mdc-form-field-infix{
+padding:0px !important;
+}
+
+.mat-mdc-paginator-container .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--outlined.mdc-text-field--no-label{
+    width:75px !important;
+}
+.mat-mdc-dialog-container{
+    height: 300px !important;
+}
+.fixed-button{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 15px;
+}
+.filter-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-header a.popup-close{
+      width: 0px;
+    height: 0px;
+    min-width: 0px;
+    min-height: 0px;
+    padding: 0px;
+    top: 20px !important;
+    right: 34px !important;
+}
+.modal-header a.popup-close .mdc-button__label{
+  height: 22px !important;
+}

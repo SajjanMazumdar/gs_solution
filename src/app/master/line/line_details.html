@@ -1,0 +1,146 @@
+<!-- #region loader -->
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-clip-rotate-pulse">
+    <p style="font-size: 16px; color: white">Loading...</p>
+</ngx-spinner>
+<!-- #endregion -->
+
+<div mat-dialog-title class="modal-header">
+    <h4>Line Details</h4>
+    <mat-dialog-actions align="start">
+        <a mat-button mat-dialog-close class="popup-close">
+            <svg-icon src="/svg_icons/cancel.svg"
+                [svgStyle]="{'width.px':24,'height.px':24, 'fill':'rgba(103,103,103,1)'}"
+                viewBox="0 0 24 24"></svg-icon>
+        </a>
+    </mat-dialog-actions>
+</div>
+<mat-divider></mat-divider>
+<br>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>State</mat-label>
+                <mat-select #state_select [formControl]="state" (closed)="state_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_StateSearch" closeIcon='close'
+                            placeholderLabel="Find state..." noEntriesFoundLabel="'no matching state found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (state of stateList | custfilter: filter_StateSearch; track
+                    state.state_id) {
+                    <mat-option [value]="state.state_id">{{state.state_name}}</mat-option>
+                    }
+                </mat-select>
+                @if(state.hasError('required')) {
+                <mat-error> State Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>District</mat-label>
+                <mat-select #district_select [formControl]="district" (closed)="district_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_DistrictSearch" closeIcon='close'
+                            placeholderLabel="Find state..." noEntriesFoundLabel="'no matching state found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (district of districtList | custfilter: filter_DistrictSearch | objfilter: {state_id:
+                    state.value}; track district.district_id) {
+                    <mat-option [value]="district.district_id">{{district.district_name}}</mat-option>
+                    }
+                </mat-select>
+                @if(district.hasError('required')) {
+                <mat-error> District Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Branch</mat-label>
+                <mat-select #branch_select [formControl]="branch" (closed)="branch_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_BranchSearch" closeIcon='close'
+                            placeholderLabel="Find branch..." noEntriesFoundLabel="'no matching branch found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (branch of branchList | custfilter: filter_BranchSearch | objfilter: {branch_status : 1};
+                    track
+                    branch.branch_id) {
+                    <mat-option [value]="branch.branch_id">{{branch.branch_name}} | {{branch.branch_code}}</mat-option>
+                    }
+                    <div matSelectFooter>
+                        <button mat-button color="primary" class="no-hover-bg" (click)="openBranchDetails()">
+                            <svg-icon src="/svg_icons/add.svg" [svgStyle]="{'width.px':20,'height.px':20}" 
+                            viewBox="0 0 24 24" fill="rgba(53,53,53,1)">
+                        </svg-icon> 
+                            Add New Branch
+                        </button>
+                    </div>
+                </mat-select>
+                @if(branch.hasError('required')) {
+                <mat-error> Branch Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Site Code</mat-label>
+                <input matInput type="text" #line_code_input [formControl]="line_code" [lengthMax]="45">
+                @if(line_code.hasError('required')) {
+                <mat-error> Site Code Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Site Name</mat-label>
+                <input matInput type="text" #line_name_input [formControl]="line_name" [lengthMax]="45">
+                @if(line_name.hasError('required')) {
+                <mat-error> Site Name Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Status</mat-label>
+                <mat-select #line_status_select [formControl]="line_status" (closed)="line_status_select.focus()">
+                    <mat-option [value]=1>Active</mat-option>
+                    <mat-option [value]=0>In-Active</mat-option>
+                </mat-select>
+                @if(line_status.hasError('required')) {
+                <mat-error> Line Status Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+    </div>
+
+
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+
+    <div class="example-button-row" style="padding-right: 30px;">
+        <button mat-fab extended (click)="onSubmit()" style=" background: #3085d6; height: 34px; color: #fff;">
+            @if(line_id == 0) {<span>Submit</span>}
+            @else {<span>Update</span>}
+        </button>
+
+        <button mat-fab extended (click)="onReset()" style=" background: #f5b91e;height: 34px; color: #000;">
+            Reset
+        </button>
+
+        @if(line_id > 0) {
+        <button mat-fab extended (click)="onDelete()" style=" background: red;height: 34px; color: #fff;">
+            Delete
+        </button>
+        }
+
+    </div>
+
+</mat-dialog-actions>
