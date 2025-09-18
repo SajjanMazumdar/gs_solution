@@ -1,7 +1,32 @@
 export interface GuardList {
-  position: number;
-  guard_id: number;
-  guard_code: string;
-  guard_name: string;
-  guard_status: number;
+  position: number,
+  guard_id: number,
+  guard_code: string,
+  branch_id: number,
+  branch_code: string,
+  branch_name: string,
+  line_id: number,
+  line_code: string,
+  line_name: string,
+  rank_id: number,
+  rank_code: string,
+  rank_name: string,
+  guard_name: string,
+  father_name: string,
+  birth_place: string,
+  birth_date: Date,
+  join_date: Date,
+  guard_height: number,
+  maritial_status: number,
+  contact_number: number,
+  qualification: string,
+  identification: string,
+  experience: string,
+  state_id: number,
+  state_name: string,
+  district_id: number,
+  district_name: string,
+  current_address: string,
+  permanent_address: string,
+  guard_status: number,
 }

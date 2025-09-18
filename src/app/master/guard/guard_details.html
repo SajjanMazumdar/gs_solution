@@ -6,10 +6,10 @@
 
 <div mat-dialog-title class="modal-header">
     <h4>Guard Details</h4>
-    <mat-dialog-actions align="start" >
+    <mat-dialog-actions align="start">
         <a mat-button mat-dialog-close class="popup-close">
-            <svg-icon src="/svg_icons/cancel.svg" [svgStyle]="{'width.px':24,'height.px':24, 'fill':'rgba(103,103,103,1)'}"
-                viewBox="0 0 24 24">
+            <svg-icon src="/svg_icons/cancel.svg"
+                [svgStyle]="{'width.px':24,'height.px':24, 'fill':'rgba(103,103,103,1)'}" viewBox="0 0 24 24">
             </svg-icon>
         </a>
     </mat-dialog-actions>
@@ -49,170 +49,271 @@
             </mat-form-field>
         </div> 
     </div> -->
-    <div class="row">       
+    <div class="row">
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Ticket Number</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Ticket Number Required </mat-error>
+                <input matInput type="text" #guard_code_input [formControl]="guard_code" [lengthMax]="45">
+                @if(guard_code.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
         </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Posting Site Name</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Posting Site Name Required </mat-error>
+                <mat-label>Branch</mat-label>
+                <mat-select #branch_select [formControl]="branch" (closed)="branch_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_BranchSearch" closeIcon='close'
+                            placeholderLabel="Find branch..." noEntriesFoundLabel="'no matching branch found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (branch of branchList | custfilter: filter_BranchSearch | objfilter: {branch_status : 1}; track branch.branch_id) {
+                    <mat-option [value]="branch.branch_id">{{branch.branch_name}} | {{branch.branch_code}}</mat-option>
+                    }
+                </mat-select>
+                @if(branch.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
-        </div> 
+        </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Postfor</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Postfor Required </mat-error>
+                <mat-label>Site</mat-label>
+                <mat-select #line_select [formControl]="line" (closed)="line_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_LineSearch" closeIcon='close'
+                            placeholderLabel="Find Site..." noEntriesFoundLabel="'no matching site found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (line of lineList | custfilter: filter_LineSearch | objfilter: {line_status : 1}; track line.line_id) {
+                    <mat-option [value]="line.line_id">{{line.line_name}} | {{line.line_code}}</mat-option>
+                    }
+                </mat-select>
+                @if(line.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
-        </div> 
+        </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Guard Name</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Guard Name Required </mat-error>
+                <mat-label>Rank</mat-label>
+                <mat-select #rank_select [formControl]="rank" (closed)="rank_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_RankSearch" closeIcon='close'
+                            placeholderLabel="Find Rank..." noEntriesFoundLabel="'no matching rank found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (rank of rankList | custfilter: filter_RankSearch | objfilter: {rank_status : 1}; track rank.rank_id) {
+                    <mat-option [value]="rank.rank_id">{{rank.rank_name}} | {{rank.rank_code}}</mat-option>
+                    }
+                </mat-select>
+                @if(line.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
-        </div>                    
+        </div>
     </div>
-<div class="row">
-        <div class="col-3 mtop">
+
+    <div class="row">
+        <div class="col-4 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Father's Name</mat-label>
+                <mat-label>Name</mat-label>
                 <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
                 @if(guard_name.hasError('required')) {
-                <mat-error> Father's Name Required </mat-error>
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
         </div>
+        <div class="col-4 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Father Name</mat-label>
+                <input matInput type="text" #father_name_input [formControl]="father_name" [lengthMax]="45">
+                @if(father_name.hasError('required')) {
+                <mat-error> Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-4 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Birth Place</mat-label>
+                <input matInput type="text" #birth_place_input [formControl]="birth_place" [lengthMax]="45">
+                @if(birth_place.hasError('required')) {
+                <mat-error> Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Date of Birth</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Date of Birth Required </mat-error>
+                <input matInput #birth_date_input [formControl]="birth_date" [matDatepicker]="birth_date_picker"
+                    readonly (focus)="birth_date_picker.open()">
+                <mat-datepicker-toggle matIconSuffix [for]="birth_date_picker"
+                    tabindex="-1"></mat-datepicker-toggle>
+                <mat-datepicker #birth_date_picker></mat-datepicker>
+                @if(birth_date.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
-        </div>   
+        </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Birth Place</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error>Birth Place Required </mat-error>
+                <mat-label>Date of Join</mat-label>
+                <input matInput #join_date_input [formControl]="join_date" [matDatepicker]="join_date_picker"
+                    readonly (focus)="join_date_picker.open()">
+                <mat-datepicker-toggle matIconSuffix [for]="join_date_picker"
+                    tabindex="-1"></mat-datepicker-toggle>
+                <mat-datepicker #join_date_picker></mat-datepicker>
+                @if(join_date.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
-        </div>    
+        </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Height</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error>Height Required </mat-error>
+                <input matInput type="number" #guard_height_input [formControl]="guard_height" numberonly [length]="9" [negative]="false" [decimal]="false" onwheel="this.blur()">
+                @if(guard_height.hasError('required')) {
+                <mat-error>Required </mat-error>
                 }
             </mat-form-field>
-        </div>                             
-</div>
-<div class="row">
+        </div>
+        <div class="col-3 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>Maritial Status</mat-label>
+                <mat-select #maritial_status_select [formControl]="maritial_status" (closed)="maritial_status_select.focus()">
+                    <mat-option [value]=1>Married</mat-option>
+                    <mat-option [value]=2>Unmarried</mat-option>
+                    <mat-option [value]=3>Separate</mat-option>
+                    <mat-option [value]=4>Not Applicable</mat-option>
+                </mat-select>
+                @if(maritial_status.hasError('required')) {
+                <mat-error> Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Contact Number</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Contact Number Name Required </mat-error>
+                <input matInput type="text" #contact_number_input [formControl]="contact_number" [lengthMax]="45">
+                @if(contact_number.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
         </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Qualification</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Qualification Required </mat-error>
+                <input matInput type="text" #qualification_input [formControl]="qualification" [lengthMax]="45">
+                @if(qualification.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
-        </div>   
+        </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Married Status</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error>Married Status Required </mat-error>
+                <mat-label>Identification</mat-label>
+                <input matInput type="text" #identification_input [formControl]="identification" [lengthMax]="45">
+                @if(identification.hasError('required')) {
+                <mat-error>Required </mat-error>
                 }
             </mat-form-field>
-        </div>    
+        </div>
         <div class="col-3 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Experience</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error>Experience Required </mat-error>
+                <input matInput type="text" #experience_input [formControl]="experience" [lengthMax]="45">
+                @if(experience.hasError('required')) {
+                <mat-error>Required </mat-error>
                 }
             </mat-form-field>
-        </div>                             
-</div>
-<div class="row">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>State</mat-label>
+                <mat-select #state_select [formControl]="state" (closed)="state_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_StateSearch" closeIcon='close'
+                            placeholderLabel="Find state..." noEntriesFoundLabel="'no matching state found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (state of stateList | custfilter: filter_StateSearch; track
+                    state.state_id) {
+                    <mat-option [value]="state.state_id">{{state.state_name}}</mat-option>
+                    }
+                </mat-select>
+                @if(state.hasError('required')) {
+                <mat-error> Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-6 mtop">
+            <mat-form-field appearance="outline" class="example-full-width custom-style3">
+                <mat-label>District</mat-label>
+                <mat-select #district_select [formControl]="district" (closed)="district_select.focus()">
+                    <mat-option>
+                        <ngx-mat-select-search [(ngModel)]="filter_DistrictSearch" closeIcon='close'
+                            placeholderLabel="Find state..." noEntriesFoundLabel="'no matching state found'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    @for (district of districtList | custfilter: filter_DistrictSearch | objfilter: {state_id:
+                    state.value}; track district.district_id) {
+                    <mat-option [value]="district.district_id">{{district.district_name}}</mat-option>
+                    }
+                </mat-select>
+                @if(district.hasError('required')) {
+                <mat-error> Required </mat-error>
+                }
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-6 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Current Address</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Current Address Required </mat-error>
+                <input matInput type="text" #current_address_input [formControl]="current_address" [lengthMax]="45">
+                @if(current_address.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
         </div>
         <div class="col-6 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Permanent Address</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Permanent Address Required </mat-error>
-                }
-            </mat-form-field>
-        </div>   
-                          
-</div>
-<div class="row">
-        <div class="col-4 mtop">
-            <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Identification Marks</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Current Address Required </mat-error>
+                <input matInput type="text" #permanent_address_input [formControl]="permanent_address" [lengthMax]="45">
+                @if(permanent_address.hasError('required')) {
+                <mat-error> Required </mat-error>
                 }
             </mat-form-field>
         </div>
-        <div class="col-4 mtop">
+    </div>
+    <div class="row">
+        <div class="col-4">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Date Of Joining</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Permanent Address Required </mat-error>
+                <mat-label>Status</mat-label>
+                <mat-select #guard_status_select [formControl]="guard_status" (closed)="guard_status_select.focus()">
+                    <mat-option [value]=1>Active</mat-option>
+                    <mat-option [value]=0>In-Active</mat-option>
+                </mat-select>
+                @if(guard_status.hasError('required')) {
+                <mat-error> Branch Status Required </mat-error>
                 }
             </mat-form-field>
-        </div>   
-        <div class="col-4 mtop">
-            <mat-form-field appearance="outline" class="example-full-width custom-style3">
-                <mat-label>Branch Place</mat-label>
-                <input matInput type="text" #guard_name_input [formControl]="guard_name" [lengthMax]="45">
-                @if(guard_name.hasError('required')) {
-                <mat-error> Permanent Address Required </mat-error>
-                }
-            </mat-form-field>
-        </div>                            
-</div>
+        </div>
+        <div class="col-4">
+            
+        </div>
+        <div class="col-4">
+            
+        </div>
+    </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
