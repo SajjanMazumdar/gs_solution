@@ -52,14 +52,14 @@ export const menuItems: MenuItem[] = [
         status: true,
       },
       {
-        unique_id: 8,
+        unique_id: 9,
         icon: 'badge-pass-icon',
         label: 'Employee',
         route: '/master/employee',
         status: true,
       },
       {
-        unique_id: 9,
+        unique_id: 10,
         icon: 'bank-building-icon',
         label: 'Bank',
         route: '/master/bank',
