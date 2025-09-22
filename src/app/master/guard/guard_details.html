@@ -275,7 +275,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6 mtop">
+        <div class="col-12 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Current Address</mat-label>
                 <input matInput type="text" #current_address_input [formControl]="current_address" [lengthMax]="45">
@@ -284,7 +284,9 @@
                 }
             </mat-form-field>
         </div>
-        <div class="col-6 mtop">
+    </div>
+    <div class="row">
+                <div class="col-12 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Permanent Address</mat-label>
                 <input matInput type="text" #permanent_address_input [formControl]="permanent_address" [lengthMax]="45">
