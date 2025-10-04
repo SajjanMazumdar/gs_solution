@@ -11,6 +11,10 @@ const routes: Routes = [
         path: 'attendance',        
         loadComponent: () => import('./attendance/attendance.component').then(m => m.AttendanceComponent)
       },
+      {
+        path: 'attendance/details',        
+        loadComponent: () => import('./attendance-details/attendance-details.component').then(m => m.AttendanceDetailsComponent)
+      },
     ]
   }
 ];
