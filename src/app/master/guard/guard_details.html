@@ -278,7 +278,7 @@
         <div class="col-12 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Current Address</mat-label>
-                <input matInput type="text" #current_address_input [formControl]="current_address" [lengthMax]="45">
+                <input matInput type="text" #current_address_input [formControl]="current_address" [lengthMax]="200">
                 @if(current_address.hasError('required')) {
                 <mat-error> Required </mat-error>
                 }
@@ -289,7 +289,7 @@
                 <div class="col-12 mtop">
             <mat-form-field appearance="outline" class="example-full-width custom-style3">
                 <mat-label>Permanent Address</mat-label>
-                <input matInput type="text" #permanent_address_input [formControl]="permanent_address" [lengthMax]="45">
+                <input matInput type="text" #permanent_address_input [formControl]="permanent_address" [lengthMax]="200">
                 @if(permanent_address.hasError('required')) {
                 <mat-error> Required </mat-error>
                 }
