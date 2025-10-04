@@ -67,6 +67,23 @@ export const menuItems: MenuItem[] = [
       }
     ],
   },
+  
+  {
+    unique_id: 11,
+    icon: 'operation',
+    label: 'Operation',
+    route: '',
+    status: true,
+    subItems: [
+      {
+        unique_id: 12,
+        icon: 'fingerprint',
+        label: 'Attendance',
+        route: '/operation/attendance',
+        status: true,
+      },
+    ],
+  },
 
 ];
 

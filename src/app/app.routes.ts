@@ -22,4 +22,8 @@ export const routes: Routes = [
         path: 'master',
         loadChildren: () => import('./master/master.module').then(m => m.MasterModule),
     },
+    {
+        path: 'operation',
+        loadChildren: () => import('./operation/operation.module').then(m => m.OperationModule),
+    },
 ];
